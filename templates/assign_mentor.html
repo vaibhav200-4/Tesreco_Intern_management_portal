@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Assign Mentor | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="page-header compact">
+    <p class="eyebrow">Assignments</p>
+    <h1>Assign Mentor</h1>
+    <p>Create structured mentor pairings based on intern domain and mentor specialization.</p>
+</section>
+
+<form class="form-panel" action="{{ url_for('mentor.assign_form') }}" method="POST">
+    <div class="form-grid">
+        <div class="field">
+            <label for="intern_id">Intern</label>
+            <select id="intern_id" name="intern_id" required>
+                <option value="">Select intern</option>
+                {% for intern in interns %}
+                <option value="{{ intern.id }}">{{ intern.name }} - {{ intern.domain }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="field">
+            <label for="mentor_id">Mentor</label>
+            <select id="mentor_id" name="mentor_id" required>
+                <option value="">Select mentor</option>
+                {% for mentor in mentors %}
+                <option value="{{ mentor.mentor_id }}">{{ mentor.name }} - {{ mentor.specialization }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <button class="btn primary" type="submit">Assign Mentor</button>
+</form>
+
+<div class="search-panel section-gap">
+    <span class="badge-muted">Search</span>
+    <input type="search" data-table-search="#assignment-table" placeholder="Search assignments">
+</div>
+
+<div class="table-wrap">
+    <table id="assignment-table">
+        <thead>
+            <tr>
+                <th>Intern Name</th>
+                <th>Mentor Name</th>
+                <th>Specialization</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for assignment in assignments %}
+            <tr>
+                <td><strong>{{ assignment.intern_name }}</strong></td>
+                <td>{{ assignment.mentor_name }}</td>
+                <td><span class="badge">{{ assignment.specialization }}</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" class="empty-state">No mentor assignments yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="dashboard-hero">
+    <div>
+        <p class="eyebrow">Executive dashboard</p>
+        <h1>Welcome back to TESRECO Internship Management</h1>
+        <p class="lead">Monitor intern growth, mentor coverage, attendance activity, and program assignments from one polished command center.</p>
+        <div class="button-row">
+            <a class="btn primary" href="{{ url_for('intern.add_page') }}">Add Intern</a>
+            <a class="btn" href="{{ url_for('mentor.assign_page') }}">Assign Mentor</a>
+        </div>
+    </div>
+    <div class="hero-panel">
+        <div class="hero-metric">
+            <span class="metric-label">Program health</span>
+            <span class="badge-success">On track</span>
+        </div>
+        <div class="hero-metric">
+            <p>Total active interns</p>
+            <strong>{{ stats.total_interns }}</strong>
+        </div>
+        <div class="hero-metric">
+            <p>Mentor coverage</p>
+            <strong>{{ stats.assigned_mentors }}</strong>
+        </div>
+    </div>
+</section>
+
+<section class="stats-grid">
+    <div class="stat-card">
+        <span class="stat-icon">01</span>
+        <span>Total Interns</span>
+        <strong>{{ stats.total_interns }}</strong>
+        <small>Registered learners in the portal</small>
+    </div>
+    <div class="stat-card">
+        <span class="stat-icon">02</span>
+        <span>Total Mentors</span>
+        <strong>{{ stats.total_mentors }}</strong>
+        <small>Available experts and guides</small>
+    </div>
+    <div class="stat-card">
+        <span class="stat-icon">03</span>
+        <span>Attendance Records</span>
+        <strong>{{ stats.attendance_records }}</strong>
+        <small>Saved attendance checkpoints</small>
+    </div>
+    <div class="stat-card">
+        <span class="stat-icon">04</span>
+        <span>Assigned Mentors</span>
+        <strong>{{ stats.assigned_mentors }}</strong>
+        <small>Active mentor pairings</small>
+    </div>
+</section>
+
+<section class="actions-grid">
+    <a class="action-card" href="{{ url_for('intern.add_page') }}"><span class="action-icon">+</span>Add Intern<p>Create a polished profile for a new participant.</p></a>
+    <a class="action-card" href="{{ url_for('intern.view_page') }}"><span class="action-icon">#</span>View Interns<p>Review domains, duration, and profile actions.</p></a>
+    <a class="action-card" href="{{ url_for('attendance.attendance_page') }}"><span class="action-icon">OK</span>Attendance<p>Capture daily presence and leave updates.</p></a>
+    <a class="action-card" href="{{ url_for('mentor.mentor_page') }}"><span class="action-icon">M</span>Mentors<p>Maintain the expert pool by specialization.</p></a>
+    <a class="action-card" href="{{ url_for('mentor.assign_page') }}"><span class="action-icon">A</span>Assignments<p>Connect interns with the right mentor.</p></a>
+    <a class="action-card" href="{{ url_for('home.about') }}"><span class="action-icon">i</span>About<p>Explore program mission, vision, and domains.</p></a>
+</section>
+
+<section class="insight-grid">
+    <div class="chart-card">
+        <p class="eyebrow">Program snapshot</p>
+        <h2>Weekly engagement trend</h2>
+        <p>Visual placeholder for future attendance and progress analytics.</p>
+        <div class="chart-bars" aria-label="Engagement chart placeholder">
+            <span style="height: 48%"></span>
+            <span style="height: 68%"></span>
+            <span style="height: 42%"></span>
+            <span style="height: 82%"></span>
+            <span style="height: 60%"></span>
+            <span style="height: 74%"></span>
+        </div>
+    </div>
+    <div class="activity-card">
+        <p class="eyebrow">Recent activity</p>
+        <h2>Operational flow</h2>
+        <div class="activity-list">
+            <div class="activity-item"><span class="activity-dot"></span><div><strong>Intern profiles ready</strong><p>New registrations appear instantly in the intern table.</p></div></div>
+            <div class="activity-item"><span class="activity-dot"></span><div><strong>Mentor capacity tracked</strong><p>Specializations help guide better assignments.</p></div></div>
+            <div class="activity-item"><span class="activity-dot"></span><div><strong>Attendance history live</strong><p>Daily records remain searchable and scannable.</p></div></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

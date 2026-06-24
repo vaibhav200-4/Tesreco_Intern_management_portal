@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Add Intern | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="page-header compact">
+    <p class="eyebrow">Interns</p>
+    <h1>Add Intern</h1>
+    <p>Create a refined intern profile for program tracking and mentor assignment.</p>
+</section>
+
+<form class="form-panel" action="{{ url_for('intern.register_form') }}" method="POST">
+    <div class="form-grid">
+        <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Full name" required>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="name@example.com" required>
+        </div>
+        <div class="field">
+            <label for="domain">Domain</label>
+            <input id="domain" type="text" name="domain" placeholder="Web Development" required>
+        </div>
+        <div class="field">
+            <label for="duration">Duration (months)</label>
+            <input id="duration" type="number" name="duration" min="1" placeholder="3" required>
+        </div>
+    </div>
+
+    <div class="button-row">
+        <button class="btn primary" type="submit">Register Intern</button>
+        <a class="btn" href="{{ url_for('intern.view_page') }}">View All Interns</a>
+    </div>
+</form>
+{% endblock %}

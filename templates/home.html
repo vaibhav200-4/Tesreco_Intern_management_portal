@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Home | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="hero hero-grid">
+    <div>
+        <p class="eyebrow">Internship Management Portal</p>
+        <h1>Run the TESRECO internship program with clarity.</h1>
+        <p class="lead">Manage interns, mentors, attendance, and assignments from a focused SaaS-style workspace designed for speed and confidence.</p>
+        <div class="button-row">
+            <a class="btn primary" href="{{ url_for('home.dashboard') }}">Open Dashboard</a>
+            <a class="btn" href="{{ url_for('home.about') }}">About TESRECO</a>
+        </div>
+    </div>
+    <div class="hero-panel">
+        <span class="badge-success">Premium workspace</span>
+        <h2>One portal for program operations</h2>
+        <p>Keep intern records, mentor specializations, attendance updates, and assignments organized in a calm, modern interface.</p>
+        <div class="hero-metric"><span class="metric-label">Core modules</span><strong>4</strong></div>
+    </div>
+</section>
+
+<section class="actions-grid">
+    <a class="action-card" href="{{ url_for('intern.view_page') }}"><span class="action-icon">I</span>Intern directory<p>Browse participant details and update records.</p></a>
+    <a class="action-card" href="{{ url_for('attendance.attendance_page') }}"><span class="action-icon">A</span>Attendance desk<p>Record daily attendance with a clean form.</p></a>
+    <a class="action-card" href="{{ url_for('mentor.assign_page') }}"><span class="action-icon">M</span>Mentor matching<p>Pair learners with the right specialists.</p></a>
+</section>
+{% endblock %}

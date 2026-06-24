@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Mentors | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="page-header compact">
+    <p class="eyebrow">Mentors</p>
+    <h1>Mentor Management</h1>
+    <p>Add specialists and keep mentor capacity visible for assignments.</p>
+</section>
+
+<form class="form-panel" action="{{ url_for('mentor.mentor_form') }}" method="POST">
+    <div class="form-grid">
+        <div class="field">
+            <label for="name">Mentor Name</label>
+            <input id="name" type="text" name="name" placeholder="Mentor full name" required>
+        </div>
+        <div class="field">
+            <label for="specialization">Specialization</label>
+            <input id="specialization" type="text" name="specialization" placeholder="AI and Machine Learning" required>
+        </div>
+    </div>
+
+    <button class="btn primary" type="submit">Add Mentor</button>
+</form>
+
+<div class="search-panel section-gap">
+    <span class="badge-muted">Search</span>
+    <input type="search" data-table-search="#mentor-table" placeholder="Search mentors by name or specialization">
+</div>
+
+<div class="table-wrap">
+    <table id="mentor-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Mentor Name</th>
+                <th>Specialization</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mentor in mentors %}
+            <tr>
+                <td><span class="badge-muted">{{ mentor.mentor_id }}</span></td>
+                <td><strong>{{ mentor.name }}</strong></td>
+                <td><span class="badge">{{ mentor.specialization }}</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" class="empty-state">No mentors added yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

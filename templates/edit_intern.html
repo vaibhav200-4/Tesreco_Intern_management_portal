@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Intern | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="page-header compact">
+    <p class="eyebrow">Interns</p>
+    <h1>Edit Intern</h1>
+    <p>Update intern profile details while preserving the existing record.</p>
+</section>
+
+<form class="form-panel" action="{{ url_for('intern.update_intern_form', id=intern.id) }}" method="POST">
+    <div class="form-grid">
+        <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" value="{{ intern.name }}" required>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" value="{{ intern.email }}" required>
+        </div>
+        <div class="field">
+            <label for="domain">Domain</label>
+            <input id="domain" type="text" name="domain" value="{{ intern.domain }}" required>
+        </div>
+        <div class="field">
+            <label for="duration">Duration (months)</label>
+            <input id="duration" type="number" name="duration" min="1" value="{{ intern.duration }}" required>
+        </div>
+    </div>
+
+    <div class="button-row">
+        <button class="btn primary" type="submit">Update Intern</button>
+        <a class="btn" href="{{ url_for('intern.view_page') }}">Cancel</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TESRECO Internship Portal{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle" aria-label="Toggle navigation">
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="{{ url_for('home.dashboard') }}">
+                <span class="brand-mark"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="TESRECO logo"></span>
+                <span>
+                    <strong>TESRECO</strong>
+                    <small>Internship OS</small>
+                </span>
+            </a>
+
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="{{ url_for('home.home') }}"><span>Home</span></a>
+                <a href="{{ url_for('home.dashboard') }}"><span>Dashboard</span></a>
+                <a href="{{ url_for('intern.add_page') }}"><span>Add Intern</span></a>
+                <a href="{{ url_for('intern.view_page') }}"><span>View Interns</span></a>
+                <a href="{{ url_for('attendance.attendance_page') }}"><span>Attendance</span></a>
+                <a href="{{ url_for('mentor.mentor_page') }}"><span>Mentors</span></a>
+                <a href="{{ url_for('mentor.assign_page') }}"><span>Assignments</span></a>
+                <a href="{{ url_for('home.about') }}"><span>About</span></a>
+            </nav>
+
+            <div class="sidebar-card">
+                <span class="pulse-dot"></span>
+                <p>Portal status</p>
+                <strong>All systems operational</strong>
+            </div>
+        </aside>
+
+        <div class="workspace">
+            <header class="topbar">
+                <label class="menu-button" for="sidebar-toggle" aria-label="Open navigation">?</label>
+                <div>
+                    <p class="topbar-kicker">TESRECO Portal</p>
+                    <h2>Internship Management</h2>
+                </div>
+                <div class="topbar-actions">
+                    <button class="icon-button" type="button" aria-label="Notifications">?</button>
+                    <div class="user-chip">
+                        <span>TP</span>
+                        <div>
+                            <strong>TESRECO Admin</strong>
+                            <small>Program Office</small>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="container">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('[data-table-search]').forEach(function (input) {
+            input.addEventListener('input', function () {
+                var table = document.querySelector(input.getAttribute('data-table-search'));
+                if (!table) return;
+                var query = input.value.toLowerCase();
+                table.querySelectorAll('tbody tr').forEach(function (row) {
+                    row.style.display = row.textContent.toLowerCase().includes(query) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="page-header compact">
+    <p class="eyebrow">Attendance</p>
+    <h1>Record Attendance</h1>
+    <p>Log daily intern status and review the attendance trail below.</p>
+</section>
+
+<form class="form-panel" action="{{ url_for('attendance.attendance_form') }}" method="POST">
+    <div class="form-grid">
+        <div class="field">
+            <label for="intern_id">Intern</label>
+            <select id="intern_id" name="intern_id" required>
+                <option value="">Select intern</option>
+                {% for intern in interns %}
+                <option value="{{ intern.id }}">{{ intern.name }} (TES{{ '%03d' | format(intern.id) }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="field">
+            <label for="date">Date</label>
+            <input id="date" type="date" name="date" required>
+        </div>
+        <div class="field">
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Leave">Leave</option>
+            </select>
+        </div>
+    </div>
+
+    <button class="btn primary" type="submit">Save Attendance</button>
+</form>
+
+<div class="search-panel section-gap">
+    <span class="badge-muted">Search</span>
+    <input type="search" data-table-search="#attendance-table" placeholder="Search attendance records">
+</div>
+
+<div class="table-wrap">
+    <table id="attendance-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Intern ID</th>
+                <th>Intern Name</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td><span class="badge-muted">{{ record.id }}</span></td>
+                <td>{{ record.intern_id }}</td>
+                <td><strong>{{ record.intern_name or 'Unknown' }}</strong></td>
+                <td>{{ record.date }}</td>
+                <td><span class="badge">{{ record.status }}</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="empty-state">No attendance records yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

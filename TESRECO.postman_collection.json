@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "TESRECO Internship Management Portal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Register Intern",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Asha Sharma\",\n  \"email\": \"asha@example.com\",\n  \"domain\": \"Python\",\n  \"duration\": 3\n}"
+        },
+        "url": "{{base_url}}/register"
+      }
+    },
+    {
+      "name": "Get Interns",
+      "request": {"method": "GET", "url": "{{base_url}}/interns"}
+    },
+    {
+      "name": "Update Intern",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Asha Sharma\",\n  \"email\": \"asha.updated@example.com\",\n  \"domain\": \"Flask\",\n  \"duration\": 4\n}"
+        },
+        "url": "{{base_url}}/intern/1"
+      }
+    },
+    {
+      "name": "Delete Intern",
+      "request": {"method": "DELETE", "url": "{{base_url}}/intern/1"}
+    },
+    {
+      "name": "Add Attendance",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"intern_id\": 1,\n  \"date\": \"2026-06-23\",\n  \"status\": \"Present\"\n}"
+        },
+        "url": "{{base_url}}/attendance"
+      }
+    },
+    {
+      "name": "Get Attendance",
+      "request": {"method": "GET", "url": "{{base_url}}/attendance"}
+    },
+    {
+      "name": "Add Mentor",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Dr. Kavya Rao\",\n  \"specialization\": \"AI/ML\"\n}"
+        },
+        "url": "{{base_url}}/mentor"
+      }
+    },
+    {
+      "name": "Get Mentors",
+      "request": {"method": "GET", "url": "{{base_url}}/mentors"}
+    },
+    {
+      "name": "Assign Mentor",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"intern_id\": 1,\n  \"mentor_id\": 1\n}"
+        },
+        "url": "{{base_url}}/assign-mentor"
+      }
+    },
+    {
+      "name": "Get Assignments",
+      "request": {"method": "GET", "url": "{{base_url}}/assignments"}
+    }
+  ]
+}

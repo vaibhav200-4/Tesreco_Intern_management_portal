@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}View Interns | TESRECO Internship Portal{% endblock %}
+
+{% block content %}
+<section class="page-header compact split-header">
+    <div>
+        <p class="eyebrow">Interns</p>
+        <h1>Intern List</h1>
+        <p>Search, scan, and maintain registered intern profiles.</p>
+    </div>
+    <a class="btn primary" href="{{ url_for('intern.add_page') }}">Add New Intern</a>
+</section>
+
+<div class="search-panel">
+    <span class="badge-muted">Search</span>
+    <input type="search" data-table-search="#intern-table" placeholder="Search interns by name, email, domain, or duration">
+</div>
+
+<div class="table-wrap">
+    <table id="intern-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Domain</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for intern in interns %}
+            <tr>
+                <td><span class="badge-muted">{{ intern.id }}</span></td>
+                <td><strong>{{ intern.name }}</strong></td>
+                <td>{{ intern.email }}</td>
+                <td><span class="badge">{{ intern.domain }}</span></td>
+                <td>{{ intern.duration }} months</td>
+                <td class="table-actions">
+                    <a href="{{ url_for('intern.edit_intern_page', id=intern.id) }}">Edit</a>
+                    <a class="danger" href="{{ url_for('intern.delete_intern_page', id=intern.id) }}" onclick="return confirm('Delete this intern?')">Delete</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="empty-state">No interns registered yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
